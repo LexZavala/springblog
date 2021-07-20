@@ -29,4 +29,29 @@ public class HelloController {
         return "<h1 style=\"color: " + color + "\">Hello in " + color + "!</h1>";
     }
 
+    @RequestMapping(path = "/posts", method = RequestMethod.GET)
+    @ResponseBody
+    public String takeToIndex(){
+        return "<h1>This is where posts would be</h1>";
+    }
+
+    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public String takeToIndivPost(Long id){
+        return "<h1>This is where to view a single post</h1>";
+    }
+
+    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+    @ResponseBody
+    public String createPostForm(){
+        return "<h1>This is where the form would be to create a post</h1>";
+    }
+
+    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+    @ResponseBody
+    public String createPost(){
+        return "<h1>This is where the post creation gets posted and redirects</h1>";
+    }
+
+
 }
