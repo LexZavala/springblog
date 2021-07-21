@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RollDiceController {
-    @GetMapping("/rolldice")
+    @GetMapping("/roll-dice")
     public String getUserGuess(){
-        return "rollDice";
+        return "guess";
     }
 
 }
