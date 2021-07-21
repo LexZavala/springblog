@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Welcome</title>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
+<!--Could also use replace syntax to add a fragment to the document-->
+
+    <th:block th:replace="partials/styles.html :: styles"></th:block>
 </head>
 <body>
-<h1>This is the landing page! :)</h1>
+<h1 class="bg-primary">This is the landing page! :)</h1>
 </body>
 </html>
