@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
 <!--Could also use replace syntax to add a fragment to the document-->
-
     <th:block th:replace="partials/styles.html :: styles"></th:block>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <h1 class="bg-primary">This is the landing page! :)</h1>
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>
