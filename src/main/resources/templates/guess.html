@@ -3,9 +3,12 @@
 <head th:replace="/partials/header :: head('Roll Dice')"></head>
 <body>
 <nav th:replace="/partials/navbar" :: navbar></nav>
-<h1>Roll The Dice And Guess The Roll</h1>
-<h2>Which number will the dice fall on?</h2>
-<form action="/roll-dice" method="post">
+<div class="text-center">
+    <h1>Roll The Dice And Guess The Roll</h1>
+    <h2>Which number will the dice fall on?</h2>
+</div>
+
+<form class="text-center" action="/roll-dice" method="post">
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/1}" role="button">1</a>
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/2}" role="button">2</a>
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/3}" role="button">3</a>
@@ -13,10 +16,11 @@
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/5}" role="button">5</a>
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/6}" role="button">6</a>
 </form>
-<div th:if${isCorrect}>
+<div class="text-center" th:if${isCorrect}>
     <h5><span th:text="${correctRoll}"></span> </h5>
     <h5><span th:text="${incorrectRoll}"></span> </h5>
 </div>
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>
 
