@@ -13,7 +13,7 @@ public class Ad {
 
     @Column(nullable = false)
     private String description;
-
+///////
     public Ad(){}
 
     public Ad(long id, String title, String description) {
