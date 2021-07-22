@@ -28,6 +28,7 @@ public class PostController {
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     public String takeToIndivPost(@PathVariable long id, Model model){
         Post post =  new Post("Jeff buys a bicycle", "No one knows why, must really like the wind");
+        model.addAttribute("post", post);
         return "posts/show";
     }
 
