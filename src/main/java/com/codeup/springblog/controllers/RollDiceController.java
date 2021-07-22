@@ -16,7 +16,6 @@ public class RollDiceController {
         int randomNumRolled = (int)(Math.random()* ((6 - 1) + 1) + 1);
         model.addAttribute("guess", "This is your guess: " + guess);
         model.addAttribute("randomRoll", randomNumRolled);
-        model.addAttribute("isCorrect", guess == randomNumRolled);
 
         if ( guess == randomNumRolled){
             model.addAttribute("correctRoll", "You rolled correctly");

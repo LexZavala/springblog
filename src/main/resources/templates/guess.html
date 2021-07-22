@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/partials/header :: head('Roll Dice')"></head>
-<body>
-<nav th:replace="/partials/navbar" :: navbar></nav>
+<body >
+<nav th:replace="/partials/navbar :: navbar"></nav>
 <div class="text-center">
     <h1>Roll The Dice And Guess The Roll</h1>
     <h2>Which number will the dice fall on?</h2>
@@ -16,7 +16,7 @@
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/5}" role="button">5</a>
     <a type="submit" class="btn btn-primary" th:href="@{/roll-dice/6}" role="button">6</a>
 </form>
-<div class="text-center" th:if${isCorrect}>
+<div class="text-center">
     <h5><span th:text="${correctRoll}"></span> </h5>
     <h5><span th:text="${incorrectRoll}"></span> </h5>
 </div>
