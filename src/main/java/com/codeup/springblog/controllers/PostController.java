@@ -23,22 +23,27 @@ public class PostController {
         return "posts/index";
     }
 
-    List<Post> posts = new ArrayList<>();
-
-    @RequestMapping(path = "/posts", method = RequestMethod.GET)
-    public String takeToIndex(Model model){
-        posts.add(new Post("This is post1", "This is post1s body"));
-        posts.add(new Post("This is post2", "This is post2s body"));
-        model.addAttribute("posts", posts);
+    @PostMapping("/posts/edit")
+    public String editOne(Model model,long id){
         return "posts/index";
     }
 
-    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    public String takeToIndivPost(@PathVariable long id, Model model){
-        Post post =  new Post("Jeff buys a bicycle", "No one knows why, must really like the wind");
-        model.addAttribute("post", post);
-        return "posts/show";
-    }
+//    List<Post> posts = new ArrayList<>();
+//
+//    @RequestMapping(path = "/posts", method = RequestMethod.GET)
+//    public String takeToIndex(Model model){
+//        posts.add(new Post("This is post1", "This is post1s body"));
+//        posts.add(new Post("This is post2", "This is post2s body"));
+//        model.addAttribute("posts", posts);
+//        return "posts/index";
+//    }
+//
+//    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
+//    public String takeToIndivPost(@PathVariable long id, Model model){
+//        Post post =  new Post("Jeff buys a bicycle", "No one knows why, must really like the wind");
+//        model.addAttribute("post", post);
+//        return "posts/show";
+//    }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
     @ResponseBody

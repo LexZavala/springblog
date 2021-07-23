@@ -6,9 +6,6 @@
 <header></header>
 <main class="container">
     <div class="card head-card">
-        <div class="card-image">
-            <img src="../static/img/big-bar.png" th:src="@{/img/big-bar.png}" alt="colorful bar" />
-        </div>
         <div class="card-content">
             <h4 class="card-title">Viewing All Posts</h4>
             <p>Click any post to view all of its content.</p>
@@ -16,13 +13,15 @@
     </div>
     <div th:each="post : ${posts}">
         <div class="card offwhite-body">
-            <div class="card-image">
-                <img src="../static/img/big-bar.png" th:src="@{/img/big-bar.png}" alt="colorful bar" />
-            </div>
             <div class="card-content preview-post">
                 <h4 class="card-title" th:text="${post.title}" />
                 <p th:text="${post.body}" />
             </div>
+            <form>
+                <button th:action="@{/posts/edit}" method="post" type="submit" name="edit">Edit</button>
+                <button th:action="@{/posts/edit}" method="post" type="submit" name="delete">Delete</button>
+                <input hidden name=postId value="${post.id}">
+            </form>
             <div class="small-space" />
         </div>
     </div>
