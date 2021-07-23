@@ -19,7 +19,10 @@
             </div>
             <form>
                 <button th:action="@{/posts/edit}" method="post" type="submit" name="edit">Edit</button>
-                <button th:action="@{/posts/edit}" method="post" type="submit" name="delete">Delete</button>
+                <input hidden name=postId value="${post.id}">
+            </form>
+            <form>
+                <button th:action="@{/posts/delete}" method="post" type="submit" name="delete">Delete</button>
                 <input hidden name=postId value="${post.id}">
             </form>
             <div class="small-space" />
