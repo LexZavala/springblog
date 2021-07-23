@@ -23,7 +23,7 @@
                 <input hidden name="body" th:value="${post.body}">
                 <input hidden name="postId" th:value="${post.id}">
             </form>
-            <form th:action="@{/posts/delete}" method="post">
+            <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
                 <button type="submit" name="delete">Delete</button>
                 <input hidden name=postId th:value="${post.id}">
             </form>

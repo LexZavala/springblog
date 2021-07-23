@@ -51,6 +51,12 @@ public class PostController {
         return "redirect:/posts/" + post.getId();
     }
 
+    @PostMapping("/posts/delete/{id}")
+    public String deleteOne(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/posts";
+    }
+
 //    List<Post> posts = new ArrayList<>();
 //
 //    @RequestMapping(path = "/posts", method = RequestMethod.GET)
