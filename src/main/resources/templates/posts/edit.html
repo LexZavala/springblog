@@ -9,9 +9,9 @@
     <div class="card-content">
       <h1>Edit post</h1>
       <form th:action="@{/posts/save/edit/{id}(id=${post.id})}" method="post">
-        <input style="height: 20em; width: 20em"  class="card-title" th:value="${post.title}" name="title" />
+        <input style="width: 25em"  class="card-title" th:value="${post.title}" name="title" />
         <br>
-        <input style="height: 20em; width: 20em" th:value="${post.body}" class="i-like-paragraphs" name="body"/>
+        <textarea style="width: 25em; height: 12em" th:text="${post.body}" class="i-like-paragraphs" name="body"></textarea>
         <br>
         <button type="submit" name="save">Save changes</button>
       </form>
