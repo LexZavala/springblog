@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head ('Viewing Post')" />
+<body class="main">
+<nav th:replace="partials/navbar :: navbar" />
+<header></header>
+<main class="container">
+  <div class="card offwhite-body">
+    <div class="card-content">
+      <h1>Edit post</h1>
+      <form th:action="@{/posts/edit/{id}(id=${post.id})}" method="post">
+        <input class="card-title" th:value="${post.title}" name="title" />
+        <input th:value="${post.body}" class="i-like-paragraphs" name="body" />
+      </form>
+      <br />
+    </div>
+  </div>
+</main>
+<footer th:replace="partials/footer :: footer" />
+<!--<script th:replace="partials/david-partials :: m-script" />-->
+<!--<script th:replace="partials/david-partials :: j-query" />-->
+</body>
+</html>
+
+

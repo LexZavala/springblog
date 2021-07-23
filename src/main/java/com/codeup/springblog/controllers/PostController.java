@@ -23,9 +23,15 @@ public class PostController {
         return "posts/index";
     }
 
-    @PostMapping("/posts/edit")
-    public String editOne(Model model,long id){
-        return "posts/index";
+    @GetMapping("/posts/edit/{id}")
+    public String getOne(Model model,@PathVariable long id){
+        model.addAttribute("post", postDao.getById(id));
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/edit/{id}")
+    public String editOne(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+
     }
 
 //    List<Post> posts = new ArrayList<>();

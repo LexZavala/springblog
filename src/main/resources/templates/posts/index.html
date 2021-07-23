@@ -17,13 +17,13 @@
                 <h4 class="card-title" th:text="${post.title}" />
                 <p th:text="${post.body}" />
             </div>
-            <form>
-                <button th:action="@{/posts/edit}" method="post" type="submit" name="edit">Edit</button>
-                <input hidden name=postId value="${post.id}">
+            <form th:action="@{/posts/edit/{id}(id=${post.id})}" method="post">
+                <button  type="submit" name="edit">Edit</button>
+                <input hidden name=postId th:value="${post.id}">
             </form>
-            <form>
-                <button th:action="@{/posts/delete}" method="post" type="submit" name="delete">Delete</button>
-                <input hidden name=postId value="${post.id}">
+            <form th:action="@{/posts/delete}" method="post">
+                <button type="submit" name="delete">Delete</button>
+                <input hidden name=postId th:value="${post.id}">
             </form>
             <div class="small-space" />
         </div>
