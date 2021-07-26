@@ -29,9 +29,10 @@ public class Post {
         this.user = user;
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, User user) {
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public String getTitle() {

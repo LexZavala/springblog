@@ -2,19 +2,19 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.PostRepository;
+import com.codeup.springblog.models.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class PostController {
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -75,14 +75,14 @@ public class PostController {
 //    }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-    @ResponseBody
     public String createPostForm(){
-        return "<h1>This is where the form would be to create a post</h1>";
+
+        return "posts/create";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
-    @ResponseBody
-    public String createPost(){
+    @RequestMapping(path = "/posts/create/{id}", method = RequestMethod.POST)
+    public String createPost(Model model, @PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+
         return "<h1>This is where the post creation gets posted and redirects</h1>";
     }
 }

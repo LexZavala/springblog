@@ -11,6 +11,9 @@
             <p th:text="${post.body}" class="i-like-paragraphs" />
             <br />
         </div>
+        <div class="card-footer">
+            <span th:text="${post.user.username}"/>
+        </div>
     </div>
 </main>
 <footer th:replace="partials/footer :: footer" />

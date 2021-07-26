@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head ('Viewing Post')" />
+<body class="main">
+<nav th:replace="partials/navbar :: navbar" />
+<header></header>
+<main class="container">
+    <div class="card offwhite-body">
+        <div class="card-content">
+            <h1>Create a post</h1>
+<!--            /{id}(id=${post.user.id}) maybe add below-->
+            <form th:action="@{/posts/create}" method="post">
+                <label for="postTitle">Title:</label>
+                <input id="postTitle" style="width: 25em"  class="card-title" name="title" />
+                <br>
+                <label for="postBody">Body:</label>
+                <textarea id="postBody" style="width: 25em; height: 12em" class="i-like-paragraphs" name="body"></textarea>
+                <br>
+                <button type="submit" name="save">Create post</button>
+<!--                <input type="hidden" name="userId" th:value="${post.user.id}">-->
+            </form>
+            <br />
+        </div>
+    </div>
+</main>
+<footer th:replace="partials/footer :: footer" />
+</body>
+</html>
+
