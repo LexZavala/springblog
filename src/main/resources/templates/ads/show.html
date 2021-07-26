@@ -12,6 +12,10 @@
     <div class="card-content">
       <h3 class="card-title" th:text="${ad.title}" />
       <p th:text="${ad.description}" class="i-like-paragraphs" />
+      <p th:text="${ad.user.username}"/>
+      <div th:each="cat : ${ad.categories}">
+        <span th:text="${cat.name}"/>
+      </div>
       <br />
     </div>
   </div>

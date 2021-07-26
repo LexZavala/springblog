@@ -16,6 +16,10 @@
       <div class="card-content preview-post">
         <h4 class="card-title" th:text="${ad.title}" />
         <p th:text="${ad.description}" />
+        <p th:text="${ad.user.username}"/>
+        <div th:each="cat : ${ad.categories}">
+          <span th:text="${cat.name}"/>
+        </div>
       </div>
       <div class="small-space" />
     </div>
