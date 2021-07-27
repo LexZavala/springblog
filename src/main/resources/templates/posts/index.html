@@ -17,7 +17,7 @@
                 <h4 class="card-title" th:text="${post.title}" />
                 <p th:text="${post.body}" />
             </div>
-            <form th:action="@{/posts/edit/{id}(id=${post.id})}" method="get">
+            <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="get">
                 <button  type="submit" name="edit">Edit</button>
                 <input hidden name="title" th:value="${post.title}">
                 <input hidden name="body" th:value="${post.body}">
