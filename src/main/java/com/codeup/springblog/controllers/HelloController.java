@@ -1,10 +1,17 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
+    private final EmailService emailSvc;
+
+    public HelloController(EmailService emailSvc){
+        this.emailSvc = emailSvc;
+    }
+    g
     @GetMapping("/hello")
     @ResponseBody
     public String hello() {
