@@ -11,7 +11,7 @@ public class HelloController {
     public HelloController(EmailService emailSvc){
         this.emailSvc = emailSvc;
     }
-    g
+
     @GetMapping("/hello")
     @ResponseBody
     public String hello() {
@@ -23,6 +23,9 @@ public class HelloController {
     public String sayHello(@PathVariable String name){
         return "<h1>Hello " + name + "!</h1>";
     }
+
+    @GetMapping("/join")
+    public String showJoinForm(){return "join";}
 
     @GetMapping("/number/{num}")
     @ResponseBody
