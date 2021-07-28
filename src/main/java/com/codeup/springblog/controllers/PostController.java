@@ -2,8 +2,8 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.PostRepository;
-import com.codeup.springblog.models.User;
 import com.codeup.springblog.models.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailSvc;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailSvc) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailSvc = emailSvc;
     }
 
     @GetMapping("/posts")
@@ -72,9 +75,10 @@ public class PostController {
     }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
-    public <post> String createPost(@ModelAttribute Post post){
+    public String createPost(@ModelAttribute Post post){
         post.setUser(userDao.getById(1L));
         postDao.save(post);
+        emailSvc.prepareAndSend("lex.zavala7@gmail.com","Thank you for creating a post " + post.getUser().getUsername() + "!","You created a post titled: " + post.getTitle());
         return "redirect:/posts";
     }
 }
