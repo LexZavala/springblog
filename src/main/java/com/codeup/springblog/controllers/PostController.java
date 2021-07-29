@@ -1,9 +1,11 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +31,27 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     public String getOne(Model model,@PathVariable long id){
-        model.addAttribute("post", postDao.getById(id));
-        return "posts/edit";
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postDao.getById(id);
+        if (currentUser.getId() ==  post.getUser().getId()){
+            model.addAttribute("post", postDao.getById(id));
+            return "posts/edit";
+        }  else {
+            return "redirect:/posts/" + id;
+        }
     }
 
 
     @GetMapping("/posts/{id}")
     public String showOne(Model model,@PathVariable long id){
-        model.addAttribute("post", postDao.getById(id));
+        Post post = postDao.getById(id);
+        boolean isPostOwner = false;
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            isPostOwner = currentUser.getId() == post.getUser().getId();
+        }
+        model.addAttribute("post", post);
+        model.addAttribute("isPostOwner", isPostOwner);
         return "posts/show";
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="partials/header :: head ('Viewing All Posts')" />
 <body class="main">
 <nav th:replace="partials/navbar :: navbar" />
@@ -17,16 +18,6 @@
                 <h4 class="card-title" th:text="${post.title}" />
                 <p th:text="${post.body}" />
             </div>
-            <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="get">
-                <button  type="submit" name="edit">Edit</button>
-                <input hidden name="title" th:value="${post.title}">
-                <input hidden name="body" th:value="${post.body}">
-                <input hidden name="postId" th:value="${post.id}">
-            </form>
-            <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
-                <button type="submit" name="delete">Delete</button>
-                <input hidden name=postId th:value="${post.id}">
-            </form>
             <div class="small-space" />
         </div>
     </div>

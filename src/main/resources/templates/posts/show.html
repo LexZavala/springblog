@@ -11,6 +11,18 @@
             <p th:text="${post.body}" class="i-like-paragraphs" />
             <br />
         </div>
+        <div th:if="${isPostOwner}">
+            <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="get">
+                <button  type="submit" name="edit">Edit</button>
+                <input hidden name="title" th:value="${post.title}">
+                <input hidden name="body" th:value="${post.body}">
+                <input hidden name="postId" th:value="${post.id}">
+            </form>
+            <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
+                <button type="submit" name="delete">Delete</button>
+                <input hidden name=postId th:value="${post.id}">
+            </form>
+        </div>
         <div class="card-footer">
             <span th:text="${post.user.email}"/>
         </div>
