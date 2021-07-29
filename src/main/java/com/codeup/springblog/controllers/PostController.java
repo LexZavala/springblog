@@ -1,8 +1,8 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
-import com.codeup.springblog.models.PostRepository;
-import com.codeup.springblog.models.UserRepository;
+import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
