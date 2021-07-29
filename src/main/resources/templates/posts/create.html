@@ -9,7 +9,7 @@
         <div class="card-content">
             <h1>Create a post</h1>
 <!--            /{id}(id=${post.user.id}) maybe add below-->
-            <form action="/posts/create" th:action="@{/posts/create}" method="post" th:object="${post}">
+            <form th:action="@{/posts/create}" method="post" th:object="${post}">
                 <label for="postTitle">Title:</label>
                 <input id="postTitle" style="width: 25em"  class="card-title" th:field="*{title}" />
                 <br>
@@ -17,7 +17,6 @@
                 <textarea id="postBody" style="width: 25em; height: 12em" class="i-like-paragraphs" th:field="*{body}"></textarea>
                 <br>
                 <button type="submit" name="save">Create post</button>
-<!--                <input type="hidden" name="userId" th:value="${post.user.id}">-->
             </form>
             <br />
         </div>

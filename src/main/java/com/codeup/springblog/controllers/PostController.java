@@ -33,7 +33,7 @@ public class PostController {
     public String getOne(Model model,@PathVariable long id){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.getById(id);
-        if (currentUser.getId() ==  post.getUser().getId()){
+        if (currentUser.getId() == post.getUser().getId()){
             model.addAttribute("post", postDao.getById(id));
             return "posts/edit";
         }  else {
@@ -84,16 +84,18 @@ public class PostController {
 //    }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-    public String createPostForm(Model model){
-        model.addAttribute("post", new Post());
-        return "posts/create";
-    }
+    public String createPostForm(Model model) {
+            model.addAttribute("post", new Post());
+            return "posts/create";
+        }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
-    public String createPost(@ModelAttribute Post post){
-        post.setUser(userDao.getById(1L));
-        postDao.save(post);
-        emailSvc.prepareAndSend("lex.zavala7@gmail.com","Thank you for creating a post " + post.getUser().getUsername() + "!","You created a post titled: " + post.getTitle());
-        return "redirect:/posts";
+        // refactor here
+        @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+        public String createPost (@ModelAttribute Post post){
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            post.setUser(currentUser);
+            postDao.save(post);
+            emailSvc.prepareAndSend("lex.zavala7@gmail.com", "Thank you for creating a post " + post.getUser().getUsername() + "!", "You created a post titled: " + post.getTitle());
+            return "redirect:/posts";
+        }
     }
-}

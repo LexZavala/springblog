@@ -30,4 +30,10 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
+
+//    @GetMapping("/login")
+//    public String showLoginForm(Model model){
+//        model.addAttribute("user", new User());
+//        return "users/login";
+//    }
 }
