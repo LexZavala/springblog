@@ -41,6 +41,17 @@ public class PostController {
         }
     }
 
+    @PostMapping("/posts/{id}/edit")
+    public String editOne(Model model,@PathVariable long id, @ModelAttribute Post post){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post postFromDB = postDao.getById(id);
+        if(currentUser.getId() == postFromDB.getUser().getId()){
+            post.setUser(currentUser);
+            postDao.save(post);
+        }
+        return "redirect:/posts/" + id;
+    }
+
 
     @GetMapping("/posts/{id}")
     public String showOne(Model model,@PathVariable long id){
@@ -55,16 +66,7 @@ public class PostController {
         return "posts/show";
     }
 
-    @PostMapping("/posts/save/edit/{id}")
-    public String editOne(Model model,@PathVariable long id, @ModelAttribute Post post){
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Post postFromDB = postDao.getById(id);
-        if(currentUser.getId() == postFromDB.getUser().getId()){
-            post.setUser(currentUser);
-            postDao.save(post);
-        }
-        return "redirect:/posts/" + id;
-    }
+
 
     @PostMapping("/posts/delete/{id}")
     public String deleteOne(@PathVariable long id){

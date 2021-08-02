@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -62,8 +62,8 @@ public class PostsIntegrationTests {
 
         // Throws a Post request to /login and expect a redirection to the Posts index page after being logged in
         httpSession = this.mvc.perform(post("/login").with(csrf())
-                        .param("username", "testUser")
-                        .param("password", "pass"))
+                        .param("username", "admin")
+                        .param("password", "password"))
                 .andExpect(status().is(HttpStatus.FOUND.value()))
                 .andExpect(redirectedUrl("/posts"))
                 .andReturn()
@@ -117,6 +117,27 @@ public class PostsIntegrationTests {
                                 .param("title", "test")
                                 .param("body", "for sale"))
                 .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    public void testEditPost() throws Exception {
+        // Gets the first Ad for tests purposes
+        Post existingPost = postsDao.findAll().get(0);
+
+        // Makes a Post request to /ads/{id}/edit and expect a redirection to the Ad show page
+        this.mvc.perform(
+                        post("/posts/" + existingPost.getId() + "/edit").with(csrf())
+                                .session((MockHttpSession) httpSession)
+                                .param("title", "edited title")
+                                .param("body", "edited body"))
+                .andExpect(status().is3xxRedirection());
+
+//         Makes a GET request to /ads/{id} and expect a redirection to the Ad show page
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
+                .andExpect(status().isOk())
+                // Test the dynamic content of the page
+                .andExpect(content().string(containsString("edited title")))
+                .andExpect(content().string(containsString("edited body")));
     }
 
 
