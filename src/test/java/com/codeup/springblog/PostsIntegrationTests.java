@@ -85,7 +85,7 @@ public class PostsIntegrationTests {
         this.mvc.perform(get("/ads/" + existingPost.getId()))
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
-                .andExpect(content().string(containsString(existingPost.getDescription())));
+                .andExpect(content().string(containsString(existingPost.getBody())));
     }
 
 
