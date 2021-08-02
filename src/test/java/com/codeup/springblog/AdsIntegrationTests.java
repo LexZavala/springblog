@@ -122,7 +122,6 @@ public class AdsIntegrationTests {
         for (Ad ad : ads){
             this.mvc.perform(get("/ads"))
                     .andExpect(content().string(containsString(existingAd.getTitle())));
-
         }
     }
 

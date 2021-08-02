@@ -72,8 +72,27 @@ public class PostsIntegrationTests {
     }
 
     @Test
-    public void contextLoads() {
-        assertNotNull(mvc);
+    public void testIfUserSessionIsActive() throws Exception {
+        // It makes sure the returned session is not null
+        assertNotNull(httpSession);
+    }
+
+    @Test
+    public void testPostsIndex() throws Exception {
+        List<Post> posts = postsDao.findAll();
+        Post existingPost = posts.get(0);
+
+        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
+        this.mvc.perform(get("/posts"))
+                .andExpect(status().isOk())
+                // Test static content
+                .andExpect(content().string(containsString("Viewing All Posts")))
+                // Test the dynamic content of the page
+                .andExpect(content().string(containsString(existingPost.getTitle())));
+        for (Post post : posts){
+            this.mvc.perform(get("/posts"))
+                    .andExpect(content().string(containsString(existingPost.getTitle())));
+        }
     }
 
     @Test
@@ -82,11 +101,25 @@ public class PostsIntegrationTests {
         Post existingPost = postsDao.findAll().get(0);
 
         // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
-        this.mvc.perform(get("/ads/" + existingPost.getId()))
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
                 .andExpect(content().string(containsString(existingPost.getBody())));
     }
+
+    @Test
+    public void testCreatePost() throws Exception {
+        // Makes a Post request to /ads/create and expect a redirection to the Ad
+        this.mvc.perform(
+                        post("/posts/create").with(csrf())
+                                .session((MockHttpSession) httpSession)
+                                // Add all the required parameters to your request like this
+                                .param("title", "test")
+                                .param("body", "for sale"))
+                .andExpect(status().is3xxRedirection());
+    }
+
+
 
 
 }
