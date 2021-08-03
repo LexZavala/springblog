@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+.featherIcon{
+    font-size: 1.8em;
+    margin-left: 1em;
+}
+
+#navOptionsGroup{
+    margin-left: auto;
+}
+
 .pageHeader {
     font-size: 3em;
     font-weight: bold;
@@ -13,7 +22,14 @@
     padding: 2em;
     width: 70%;
     border-radius: 10px;
+    border: none;
 }
+
+.shadow1
+{
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+}
+
 
 .card-title {
     font-weight: bold;
