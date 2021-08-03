@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="partials/header :: head ('Viewing All Posts')" />
+<head th:replace="partials/head :: head ('Viewing All Posts')" />
 <body class="main">
 <nav th:replace="partials/navbar :: navbar" />
 <header></header>
 <main class="container">
-    <div class="card head-card">
-        <div class="card-content">
-            <h4 class="card-title">Viewing All Posts</h4>
-            <p>Click any post to view all of its content.</p>
+    <div class="mt-5 mb-5">
+        <div class="">
+            <h4 class="pageHeader">Viewing All Posts</h4>
+            <p class="text-secondary">Click any post to view all of its content.</p>
         </div>
     </div>
-    <div th:each="post : ${posts}">
-        <div class="card offwhite-body">
+    <div class="" th:each="post : ${posts}">
+        <div class=" blogContainer card offwhite-body">
             <div class="card-content preview-post">
                 <h4 class="card-title" th:text="${post.title}" />
-                <p th:text="${post.body}" />
+                <p class="card-body" th:text="${post.body}" />
             </div>
             <div class="small-space" />
         </div>

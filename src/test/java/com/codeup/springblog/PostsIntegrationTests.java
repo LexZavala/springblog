@@ -139,8 +139,4 @@ public class PostsIntegrationTests {
                 .andExpect(content().string(containsString("edited title")))
                 .andExpect(content().string(containsString("edited body")));
     }
-
-
-
-
 }

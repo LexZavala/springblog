@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pageHeader {
+    font-size: 3em;
+    font-weight: bold;
+}
+.blogContainer {
+    margin: 2em auto;
+    padding: 2em;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.card-body {
+    font-size: 18px;
+}
