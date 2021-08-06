@@ -54,4 +54,5 @@ public class AdController {
         adDao.delete(adDao.findById(id));
         return "redirect: /ads";
     }
+
 }
